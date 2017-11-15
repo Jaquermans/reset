@@ -13,7 +13,6 @@
         {
             $sql = 'INSERT INTO '.$this->table.' ('.implode(',',$this->fields).') ';
             $sql .= 'VALUES ('.implode(',',$this->values).');';
-            $this->logger->addInfo($sql);
             list($status,$mess) = $this->run($sql);
             return array($status,'Record Successfully Inserted');
         }
