@@ -15,6 +15,8 @@
         protected $searchFields;
         protected $searchTable;
 
+        protected $updateFields;
+
         public function __construct(Request $request)
         {
             $this->setLogger();
@@ -57,6 +59,9 @@
                         return $this->search();//Execute the Search
                     } elseif ($this->verb==='new' && !array_key_exists(0,$this->args)) {
                         return $this->new();//Execute the Search
+                    } elseif ($this->verb==='update' && array_key_exists(0,$this->args) &&
+                        is_numeric($this->args[0]) && !array_key_exists(1,$this->args)) {
+                        return $this->update(intval($this->args[0]));//Execute the Search
                     } elseif ($this->verb===NULL && array_key_exists(0,$this->args) &&
                         is_numeric($this->args[0]) && !array_key_exists(1,$this->args)) {
                         return $this->get(intval($this->args[0]));//Execute the Search
@@ -82,6 +87,16 @@
             $insert->setFields($this->insertFields);
             $insert->setValues($this->insertValues());
             return $insert->execute();
+        }
+
+        private function update(int $id)
+        {
+            $update = new datasources\updateSQL();
+            $update->setTable($this->searchTable);
+            $update->setFields($this->updateFields);
+            $update->setValues($this->updateValues());
+            $update->setWhereRaw('id='.$id);
+            return $update->execute();
         }
 
         private function get(int $id)

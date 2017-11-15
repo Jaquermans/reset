@@ -43,6 +43,9 @@
             $this->container['quotations'] = function($c) {
                 return new endpoints\quotations($c->request);
             };
+            $this->container['requisitions'] = function($c) {
+                return new endpoints\requisitions($c->request);
+            };
         }
 
         private function setRoutes()
