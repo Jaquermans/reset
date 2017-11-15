@@ -10,13 +10,14 @@
             parent::__construct($request);
             $this->searchFields = array('id','customer','part','qty','cost','total','date');
             $this->searchTable = 'quotations';
-            $this->insertFields = array('customer','part','qty','cost','total','date');
+            $this->insertFields = array('customer','part','qty','cost','total','date','crteDate');
         }
 
         protected function insertValues()
         {
             return array('\''.$this->getParams['customer'].'\'','\''.$this->getParams['part'].'\'',
                          $this->getParams['qty'],$this->getParams['cost'],
-                         $this->getParams['total'],'\''.$this->getParams['date'].'\'');
+                         $this->getParams['total'],'\''.$this->getParams['date'].'\'',
+                         $this->time);
         }
     }

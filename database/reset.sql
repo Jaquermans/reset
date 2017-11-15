@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2017 at 10:07 PM
+-- Generation Time: Nov 15, 2017 at 10:35 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -32,15 +32,17 @@ CREATE TABLE `invoices` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `po` smallint(5) UNSIGNED NOT NULL,
   `approve1` tinyint(1) NOT NULL,
-  `approve2` tinyint(1) NOT NULL
+  `approve2` tinyint(1) NOT NULL,
+  `crteDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `invoices`
 --
 
-INSERT INTO `invoices` (`id`, `po`, `approve1`, `approve2`) VALUES
-(1, 1, 1, 1);
+INSERT INTO `invoices` (`id`, `po`, `approve1`, `approve2`, `crteDate`) VALUES
+(1, 1, 1, 1, '0000-00-00 00:00:00'),
+(2, 1, 0, 0, '2017-11-15 14:35:03');
 
 -- --------------------------------------------------------
 
@@ -50,15 +52,17 @@ INSERT INTO `invoices` (`id`, `po`, `approve1`, `approve2`) VALUES
 
 CREATE TABLE `pos` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `requisition` smallint(5) UNSIGNED NOT NULL
+  `requisition` smallint(5) UNSIGNED NOT NULL,
+  `crteDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Purchase Orders';
 
 --
 -- Dumping data for table `pos`
 --
 
-INSERT INTO `pos` (`id`, `requisition`) VALUES
-(1, 1);
+INSERT INTO `pos` (`id`, `requisition`, `crteDate`) VALUES
+(1, 1, '0000-00-00 00:00:00'),
+(2, 1, '2017-11-15 14:33:57');
 
 -- --------------------------------------------------------
 
@@ -73,16 +77,19 @@ CREATE TABLE `quotations` (
   `qty` float NOT NULL,
   `cost` float NOT NULL,
   `total` float NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `crteDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Quotations';
 
 --
 -- Dumping data for table `quotations`
 --
 
-INSERT INTO `quotations` (`id`, `customer`, `part`, `qty`, `cost`, `total`, `date`) VALUES
-(1, 'Cliente 1', 'Parte 1', 1.5, 10, 15, '2017-11-22'),
-(2, 'C1', 'P1', 1.5, 10, 15, '2017-11-22');
+INSERT INTO `quotations` (`id`, `customer`, `part`, `qty`, `cost`, `total`, `date`, `crteDate`) VALUES
+(1, 'Cliente 1', 'Parte 1', 1.5, 10, 15, '2017-11-22', '0000-00-00 00:00:00'),
+(2, 'C1', 'P1', 1.5, 10, 15, '2017-11-22', '0000-00-00 00:00:00'),
+(3, 'C1', 'P1', 1.5, 10, 15, '2017-11-22', '2017-11-15 14:30:00'),
+(4, 'C1', 'P1', 1.5, 10, 15, '2017-11-22', '2017-11-15 14:30:21');
 
 -- --------------------------------------------------------
 
@@ -95,17 +102,19 @@ CREATE TABLE `requisitions` (
   `quotation` smallint(5) UNSIGNED NOT NULL,
   `approve1` tinyint(1) NOT NULL,
   `approve2` tinyint(1) NOT NULL,
-  `approve3` tinyint(1) NOT NULL
+  `approve3` tinyint(1) NOT NULL,
+  `crteDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Quotations';
 
 --
 -- Dumping data for table `requisitions`
 --
 
-INSERT INTO `requisitions` (`id`, `quotation`, `approve1`, `approve2`, `approve3`) VALUES
-(1, 5, 1, 1, 1),
-(2, 0, 0, 0, 0),
-(3, 1, 0, 0, 0);
+INSERT INTO `requisitions` (`id`, `quotation`, `approve1`, `approve2`, `approve3`, `crteDate`) VALUES
+(1, 5, 1, 1, 1, '0000-00-00 00:00:00'),
+(2, 0, 0, 0, 0, '0000-00-00 00:00:00'),
+(3, 1, 0, 0, 0, '0000-00-00 00:00:00'),
+(4, 1, 0, 0, 0, '2017-11-15 14:31:59');
 
 --
 -- Indexes for dumped tables
@@ -143,22 +152,22 @@ ALTER TABLE `requisitions`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pos`
 --
 ALTER TABLE `pos`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `quotations`
 --
 ALTER TABLE `quotations`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

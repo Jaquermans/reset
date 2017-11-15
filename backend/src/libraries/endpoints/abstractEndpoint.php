@@ -17,9 +17,12 @@
 
         protected $updateFields;
 
+        protected $time = NULL;
+
         public function __construct(Request $request)
         {
             $this->setLogger();
+            $this->time = '\''.date('Y-m-d H:i:s').'\'';
             $this->setReqVars($request);
             $this->setReqType($request);
             $this->getParams = $request->getQueryParams();
@@ -86,7 +89,29 @@
             $insert->setTable($this->searchTable);
             $insert->setFields($this->insertFields);
             $insert->setValues($this->insertValues());
-            return $insert->execute();
+            $id = 0;
+            list($status,$mess) = $insert->execute();
+            if($status===200){
+                list($newStat,$id) = $this->getNewID();
+                if($status===200 && $newStat===200){
+                    $status = 200;
+                    $id = $id['id'];
+                } else{
+                    $mess = 'Record Inserted but the ID could not be retrieved';
+                    $status = 500;
+                    $id = 0;
+                }
+            }
+            return array($status,array($mess,$id));
+        }
+
+        private function getNewID()
+        {
+            $get = new datasources\querySQL();
+            $get->setFields(array('id'));
+            $get->setTable($this->searchTable);
+            $get->setWhereRaw('crteDate='.$this->time);
+            return $get->execute();
         }
 
         private function update(int $id)

@@ -11,12 +11,12 @@
             $this->searchFields = array('id','po','approve1','approve2');
             $this->updateFields = array('po','approve1','approve2');
             $this->searchTable = 'invoices';
-            $this->insertFields = array('po');
+            $this->insertFields = array('po','crteDate');
         }
 
         protected function insertValues()
         {
-            return array($this->getParams['po']);
+            return array($this->getParams['po'],$this->time);
         }
 
         protected function updateValues()

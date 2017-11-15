@@ -11,12 +11,12 @@
             $this->searchFields = array('id','quotation','approve1','approve2','approve3');
             $this->updateFields = array('quotation','approve1','approve2','approve3');
             $this->searchTable = 'requisitions';
-            $this->insertFields = array('quotation');
+            $this->insertFields = array('quotation','crteDate');
         }
 
         protected function insertValues()
         {
-            return array($this->getParams['quotation']);
+            return array($this->getParams['quotation'],$this->time);
         }
 
         protected function updateValues()
