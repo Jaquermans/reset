@@ -1,0 +1,28 @@
+{
+    "name" : "jaquermans/reset",
+    "description": "Sistema Anticorrupcion para Compras usando Blockchain",
+    "version": "3.0.0",
+    "authors" : [
+        {
+            "name": "Jose Castillo",
+            "role": "Frontend Developer"
+        },
+        {
+            "name": "Daniel Oviedo",
+            "role": "Backend Developer"
+        },
+        {
+            "name": "Ramses Salinas",
+            "role": "Blockchain Developer"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.8",
+        "monolog/monolog": "^1.23"
+    },
+    "autoload":{
+        "psr-4":{
+            "reset\\":"backend/src/libraries/"
+        }
+    }
+}
