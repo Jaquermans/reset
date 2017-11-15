@@ -77,7 +77,7 @@
             $search->setFields($this->searchFields);
             $search->setTable($this->searchTable);
             $search->setWhereRaw('1');
-            return $search->execute();
+            return $search->execute(TRUE);
         }
 
         private function new()
