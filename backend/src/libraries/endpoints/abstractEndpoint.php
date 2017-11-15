@@ -76,10 +76,11 @@
 
         private function search()
         {
-            $search = new datasources\querySQL();
-            $search->setFields($this->searchFields);
-            $search->setTable($this->searchTable);
-            $search->setWhereRaw('1');
+            $search = new datasources\multichain;
+            //$search = new datasources\querySQL();
+            //$search->setFields($this->searchFields);
+            //$search->setTable($this->searchTable);
+            //$search->setWhereRaw('1');
             return $search->execute(TRUE);
         }
 

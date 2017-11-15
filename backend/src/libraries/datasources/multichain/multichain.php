@@ -29,4 +29,9 @@
         {
             $info = $this->multichain->setDebug(true)->getInfo();
         }
+
+        public function execute($fetchFlag = FALSE)
+        {
+            return array(200,$this->testGetInfo());
+        }
     }
