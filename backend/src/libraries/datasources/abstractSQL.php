@@ -11,6 +11,8 @@
         protected $table = NULL;
         protected $whereClause = NULL;
 
+        protected $values = Array();
+
         public function __construct()
         {
             $this->setLogger();
@@ -44,6 +46,11 @@
         public function setWhereRaw(string $whereClause)
         {
             $this->whereClause = $whereClause;
+        }
+
+        public function setValues(array $values)
+        {
+            $this->values = $values;
         }
 
         protected function run(string $sql, bool $res = FALSE, bool $fetch = FALSE)

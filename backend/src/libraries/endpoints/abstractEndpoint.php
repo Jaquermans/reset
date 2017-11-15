@@ -55,6 +55,8 @@
                 case 'get':
                     if ($this->verb==='search' && !array_key_exists(0,$this->args)) {
                         return $this->search();//Execute the Search
+                    } elseif ($this->verb==='new' && !array_key_exists(0,$this->args)) {
+                        return $this->new();//Execute the Search
                     }
                     break;
             }
@@ -68,5 +70,14 @@
             $search->setTable($this->searchTable);
             $search->setWhereRaw('1');
             return $search->execute();
+        }
+
+        private function new()
+        {
+            $insert = new datasources\insertSQL();
+            $insert->setTable($this->searchTable);
+            $insert->setFields($this->insertFields);
+            $insert->setValues($this->insertValues());
+            return $insert->execute();
         }
     }

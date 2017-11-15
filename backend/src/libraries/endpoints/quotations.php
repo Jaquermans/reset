@@ -8,7 +8,15 @@
         public function __construct(Request $request)
         {
             parent::__construct($request);
-            $this->searchFields = array('id,customer,part,qty,cost,total,date');
+            $this->searchFields = array('id','customer','part','qty','cost','total','date');
             $this->searchTable = 'quotations';
+            $this->insertFields = array('customer','part','qty','cost','total','date');
+        }
+
+        protected function insertValues()
+        {
+            return array('\''.$this->getParams['customer'].'\'','\''.$this->getParams['part'].'\'',
+                         $this->getParams['qty'],$this->getParams['cost'],
+                         $this->getParams['total'],'\''.$this->getParams['date'].'\'');
         }
     }
