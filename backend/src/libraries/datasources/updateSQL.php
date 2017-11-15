@@ -22,7 +22,6 @@
         {
             $sql = 'UPDATE '.$this->table.' SET '.implode(',',$this->getSetStmt()).' ';
             $sql .= ' WHERE ('.$this->whereClause.')';
-            $this->logger->addInfo($sql);
             list($status,$mess) = $this->run($sql);
             return array($status,'Record Successfully Updated');
         }

@@ -46,6 +46,12 @@
             $this->container['requisitions'] = function($c) {
                 return new endpoints\requisitions($c->request);
             };
+            $this->container['pos'] = function($c) {
+                return new endpoints\pos($c->request);
+            };
+            $this->container['invoices'] = function($c) {
+                return new endpoints\invoices($c->request);
+            };
         }
 
         private function setRoutes()

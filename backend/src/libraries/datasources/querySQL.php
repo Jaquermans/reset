@@ -9,10 +9,11 @@
             parent::__construct();
         }
 
-        public function execute()
+        public function execute($fetchFlag = FALSE)
         {
             $sql = 'SELECT '.implode(',',$this->fields).' FROM '.$this->table;
             $sql .= ' WHERE ('.$this->whereClause.')';
-            return $this->run($sql,TRUE,TRUE);
+            $this->logger->addInfo($sql);
+            return $this->run($sql,TRUE,$fetchFlag);
         }
     }

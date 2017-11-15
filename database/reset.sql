@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2017 at 09:42 PM
+-- Generation Time: Nov 15, 2017 at 10:07 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -25,13 +25,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `po`
+-- Table structure for table `invoices`
 --
 
-CREATE TABLE `po` (
+CREATE TABLE `invoices` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `po` smallint(5) UNSIGNED NOT NULL,
+  `approve1` tinyint(1) NOT NULL,
+  `approve2` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `po`, `approve1`, `approve2`) VALUES
+(1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pos`
+--
+
+CREATE TABLE `pos` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `requisition` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Purchase Orders';
+
+--
+-- Dumping data for table `pos`
+--
+
+INSERT INTO `pos` (`id`, `requisition`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -85,9 +112,15 @@ INSERT INTO `requisitions` (`id`, `quotation`, `approve1`, `approve2`, `approve3
 --
 
 --
--- Indexes for table `po`
+-- Indexes for table `invoices`
 --
-ALTER TABLE `po`
+ALTER TABLE `invoices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pos`
+--
+ALTER TABLE `pos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -107,10 +140,15 @@ ALTER TABLE `requisitions`
 --
 
 --
--- AUTO_INCREMENT for table `po`
+-- AUTO_INCREMENT for table `invoices`
 --
-ALTER TABLE `po`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `invoices`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `pos`
+--
+ALTER TABLE `pos`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `quotations`
 --
