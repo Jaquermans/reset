@@ -8,5 +8,7 @@
         public function __construct(Request $request)
         {
             parent::__construct($request);
+            $this->searchFields = array('id,customer,part,qty,cost,total,date');
+            $this->searchTable = 'quotations';
         }
     }

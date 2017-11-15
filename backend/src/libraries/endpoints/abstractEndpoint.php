@@ -1,12 +1,19 @@
 <?php
     declare(strict_types=1);
     namespace reset\endpoints;
+    use reset\datasources;
     use \Psr\Http\Message\ServerRequestInterface as Request;//Get the http request object
 
     abstract class abstractEndpoint
     {
         private $logger;
         private $file_handler;
+
+        private $verb = NULL;
+        private $args = Array();
+
+        protected $searchFields;
+        protected $searchTable;
 
         public function __construct(Request $request)
         {
@@ -44,6 +51,22 @@
 
         public function processReq()
         {
-            return array(200,'Working');
+            switch ($this->reqType) {
+                case 'get':
+                    if ($this->verb==='search' && !array_key_exists(0,$this->args)) {
+                        return $this->search();//Execute the Search
+                    }
+                    break;
+            }
+            return array(400,'Invalid Request');
+        }
+
+        private function search()
+        {
+            $search = new datasources\querySQL();
+            $search->setFields($this->searchFields);
+            $search->setTable($this->searchTable);
+            $search->setWhereRaw('1');
+            return $search->execute();
         }
     }
