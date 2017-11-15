@@ -57,6 +57,9 @@
                         return $this->search();//Execute the Search
                     } elseif ($this->verb==='new' && !array_key_exists(0,$this->args)) {
                         return $this->new();//Execute the Search
+                    } elseif ($this->verb===NULL && array_key_exists(0,$this->args) &&
+                        is_numeric($this->args[0]) && !array_key_exists(1,$this->args)) {
+                        return $this->get(intval($this->args[0]));//Execute the Search
                     }
                     break;
             }
@@ -79,5 +82,14 @@
             $insert->setFields($this->insertFields);
             $insert->setValues($this->insertValues());
             return $insert->execute();
+        }
+
+        private function get(int $id)
+        {
+            $get = new datasources\querySQL();
+            $get->setFields($this->searchFields);
+            $get->setTable($this->searchTable);
+            $get->setWhereRaw('id='.$id);
+            return $get->execute();
         }
     }
