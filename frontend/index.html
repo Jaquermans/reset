@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="myApp" ng-controller="myController">
     <head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <meta charset="utf-8">
         <title>Quotation</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,61 +15,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 
     </head>
-    <body ng-app="myApp">
+    <body>
+        <script src="app.js"></script>
+
         <header>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#/!">Company</a>
+                        <a class="navbar-brand" href="#/!">Quotation</a>
                     </div>
                 </div>
             </nav>
         </header>
-        <div style="margin-top:70px;">
-        </div>
-        <table class="table">
-            <div class="row">
-                <form class="" action="" method="get">
-                    <tr>
-                    <div class="col-md-4">
-                        <td>
-                            <span>Customer</span>
-                            <input type="text" ng-model="cust" value="" placeholder="Customer...">
-                        </td>
-                        <td>
-                            <span>Part Number</span>
-                            <input type="text" name="part-num" value="" placeholder="Part Number...">
-                        </td>
-                    </div>
-                    <div class="col-md-4">
-                        <td>
-                            <span>QTY</span>
-                            <input type="text" name="qty" value="" placeholder="QTY...">
-                        </td>
-                        <td>
-                            <span>Price</span>
-                            <input type="text" name="price" value="" placeholder="Price...">
-                        </td>
-                    </div>
-                    <div class="col-md-4">
-                        <td>
-                            <span>Total</span>
-                            <input type="text" name="total" value="" placeholder="Total...">
-                        </td>
-                        <td>
-                            <span>Payment Date</span>
-                            <input type="text" name="payment-date" value="" placeholder="Payment Date...">
-                        </td>
-                    </div>
-                </div>
-                </tr>
-                <tr>
-                    <td></td><td><td><td><td><td><input type="submit" name="btn-save" value="SAVE"></td></td></td></td></td>
-                </tr>
-            </form>
-        </table>
-
-
-        <script src="app.js"></script>
+        <new></new>
+        <!--Components-->
+        <script type="text/javascript" src="quotations/quo.component.js"></script><!--Navigation Bar Component File-->
     </body>
 </html>
