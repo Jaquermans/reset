@@ -11,16 +11,16 @@
             $this->searchFields = array('id','requisition',);
             $this->updateFields = array('requisition');
             $this->searchTable = 'pos';
-            $this->insertFields = $this->updateFields;
+            $this->insertFields = array('requisition','crteDate');
         }
 
         protected function insertValues()
         {
-            return array($this->getParams['requisition']);
+            return array($this->getParams['requisition'],$this->time);
         }
 
         protected function updateValues()
         {
-            return $this->insertValues();
+            return array($this->getParams['requisition']);
         }
     }
